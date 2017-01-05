@@ -1,4 +1,4 @@
-.widget-console .console {
+.widget-rwa-console .console {
     max-height: 300px;
     font-size: 90%;
     white-space: pre-wrap;
@@ -7,19 +7,19 @@
     position: relative;
 }
 
-.widget-console .console .message {
+.widget-rwa-console .console .message {
     padding: 5px;
 }
 
-.widget-console .console .message .text {
+.widget-rwa-console .console .message .text {
     margin-top: 5px;
 }
 
-.widget-console .console .message.collapsed .text {
+.widget-rwa-console .console .message.collapsed .text {
     display: none;
 }
 
-.widget-console .console .message .header {
+.widget-rwa-console .console .message .header {
     cursor: pointer;
     color: #999;
     font-size: 90%;
@@ -32,51 +32,51 @@
     transition: 0.4s;
 }
 
-.widget-console .console .message:not(.logtype-4) .glyphicon-info-sign {
+.widget-rwa-console .console .message:not(.logtype-4) .glyphicon-info-sign {
     display: none;
 }
 
-.widget-console .console .message .header:hover {
+.widget-rwa-console .console .message .header:hover {
     opacity: 1;
 }
 
-.widget-console .console .message .header .glyphicon {
+.widget-rwa-console .console .message .header .glyphicon {
     padding-right: 10px;
 }
 
-.widget-console .console .message .header .glyphicon-user {
+.widget-rwa-console .console .message .header .glyphicon-user {
     padding-left: 10px;
 }
 
-.widget-console .console .message.collapsed .header .glyphicon-chevron-down {
+.widget-rwa-console .console .message.collapsed .header .glyphicon-chevron-down {
     display: none;
 }
 
-.widget-console .console .message:not(.collapsed) .header .glyphicon-chevron-right {
+.widget-rwa-console .console .message:not(.collapsed) .header .glyphicon-chevron-right {
     display: none;
 }
 
-.widget-console .console .message .header .username {
+.widget-rwa-console .console .message .header .username {
     color: #00daff;
 }
 
-.widget-console .console .message:nth-child(2n) {
+.widget-rwa-console .console .message:nth-child(2n) {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 3px;
 }
 
-.widget-console .message .match {
+.widget-rwa-console .message .match {
     background: white;
     color: #2ac7d2;
     border-radius: 3px;
 }
 
-.widget-console .cmd-select .bootstrap-select .option .glyphicon {
+.widget-rwa-console .cmd-select .bootstrap-select .option .glyphicon {
     font-size: 80%;
     padding-right: 10px;
 }
 
-.widget-console .autoscroll {
+.widget-rwa-console .autoscroll {
     text-align: right;
     padding-top: 5px;
     padding-bottom: 5px;
