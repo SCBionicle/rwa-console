@@ -7,9 +7,9 @@ var widget = new Widget();
 
 /**
  * All available commands for the server
- * @type {{variables: [], commands: []}}
+ * @type {object}
  */
-widget.availableCommands = {"variables": [], "commands": []};
+widget.availableCommands = {};
 
 /**
  * Get logfiles, sorted by id
@@ -65,7 +65,13 @@ widget.onServerConnected = function (server) {
                 key = "commands";
             }
             if (line.substr(0, 1) != " ") continue;
-            widget.availableCommands[key].push(line.substr(1));
+            if (typeof widget.availableCommands[server.id] == "undefined") {
+                widget.availableCommands[server.id] = {};
+            }
+            if (typeof widget.availableCommands[server.id][key] == "undefined") {
+                widget.availableCommands[server.id][key] = [];
+            }
+            widget.availableCommands[server.id][key].push(line.substr(1));
         }
     });
 };
@@ -91,7 +97,8 @@ widget.onServerMessage = function (server, message) {
                 }
                 fs.appendFile(
                     logfilePath + logfileId,
-                    "[" + message.timestamp.toLocaleString() + "] " + JSON.stringify(message.body) + "\n"
+                    "[" + message.timestamp.toLocaleString() + "] " + JSON.stringify(message.body.toString("utf8")) + "\n",
+                    {"mode": 0o777, "encoding": "utf8"}
                 );
             });
         });
@@ -130,7 +137,7 @@ widget.onFrontendMessage = function (server, user, action, messageData, callback
             });
             break;
         case "commands":
-            callback(this, widget.availableCommands);
+            callback(this, widget.availableCommands[server.id]);
             break;
     }
 };
