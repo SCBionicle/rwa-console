@@ -1,48 +1,21 @@
 "use strict";
 
-Widget.register(function (widget) {
-    var serverLogsBtn = $('<div class="spacer"></div>' +
-        '<div class="btn btn-info btn-sm serverlogs">' + widget.t("download.logfiles") + '</div><div class="spacer"></div> '
-    );
-    var consoleHeader = '<h2 class="collapsable-trigger" data-collapsable-target="console.log">' + widget.t("messages") + '</h2>';
-    var consoleEl = $('<div class="console collapsable-target" data-collapsable-id="console.log">');
-    var cmdEl = $('<div class="cmd form-group has-feedback input-group collapsable-target" data-collapsable-id="console.commands">' +
-        '<span class="input-group-addon"><i class="glyphicon glyphicon-chevron-right"></i></span>' +
-        '<input type="search" class="form-control" placeholder="' + widget.t("input.cmd") + '">' +
-        '</div>');
-    var searchHeader = '<h2 class="collapsable-trigger" data-collapsable-target="console.commands">' + widget.t("commands.title") + '</h2>';
-    var searchEl = $('<div class="search form-group has-feedback input-group form-inline collapsable-target" data-collapsable-id="console.commands">' +
-        '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>' +
-        '<input type="search" class="form-control" placeholder="' + widget.t("input.search") + '">' +
-        '<select class="selectpicker">' +
-        '<option value="yes">' + widget.t("autoscroll.enabled") + '</option>' +
-        '<option value="no">' + widget.t("autoscroll.disabled") + '</option>' +
-        '</select>' +
-        '</div>');
-    var cmdSelect = $('<div class="cmd-select collapsable-target" data-collapsable-id="console.commands">' +
-        '<select class="selectpicker" data-live-search="true">' +
-        '<option value="">' + widget.t("list.commands") + '</option>' +
-        '</select>' +
-        '</div>');
+Widget.register("rwa-console", function (widget) {
+    var serverLogsBtn = widget.template(".searchlog-actions");
+    var consoleHeader = widget.template(".console-header");
+    var consoleEl = widget.template(".console");
+    var cmdEl = widget.template(".cmd");
+    var searchHeader = widget.template(".search-header");
+    var searchEl = widget.template(".search");
+    var cmdSelect = widget.template(".cmd-select");
     var autoscrollInp = searchEl.find("select");
 
     var receivedServerMessages = [];
     var searchTimeout = null;
 
-    var downloadFile = (function () {
-        var a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style = "display: none";
-        return function (data, fileName) {
-            var blob = new Blob([data], {type: "octet/stream"}),
-                url = window.URL.createObjectURL(blob);
-            a.href = url;
-            a.download = fileName;
-            a.click();
-            window.URL.revokeObjectURL(url);
-        };
-    }());
-
+    /**
+     * Show the raw server log files modal window
+     */
     var showRawServerLogs = function () {
         widget.backend("logfiles", null, function (files) {
             var el = $('<div>');
@@ -112,6 +85,7 @@ Widget.register(function (widget) {
         }
         e.find(".text").html(escapeHtml(messageData.body));
         consoleEl.append(e);
+        consoleHeader.find(".count").text("(" + receivedServerMessages.length + ")");
         if (autoscrollInp.length && autoscrollInp[0].value == "yes") {
             scrollTo(999999999);
         }
