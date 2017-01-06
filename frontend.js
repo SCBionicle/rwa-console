@@ -110,7 +110,7 @@ Widget.register(function (widget) {
             e.find(".header").append('<span class="glyphicon glyphicon-user"></span>' +
                 '<span class="username">' + messageData.user + '</span>');
         }
-        e.find(".text").html(escapeHtml(atob(messageData.bodyBase64)));
+        e.find(".text").html(escapeHtml(messageData.body));
         consoleEl.append(e);
         if (autoscrollInp.length && autoscrollInp[0].value == "yes") {
             scrollTo(999999999);
