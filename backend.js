@@ -97,8 +97,8 @@ widget.onServerMessage = function (server, message) {
                 }
                 fs.appendFile(
                     logfilePath + logfileId,
-                    "[" + message.timestamp.toLocaleString() + "] " + JSON.stringify(message.body.toString("utf8")) + "\n",
-                    {"mode": 0o777, "encoding": "utf8"}
+                    "[" + message.timestamp.toLocaleString() + "] " + JSON.stringify(message.body) + "\n",
+                    {"mode": 0o777}
                 );
             });
         });
