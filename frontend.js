@@ -147,6 +147,7 @@ Widget.register(function (widget) {
     widget.onInit = function () {
         // get all available command and list in the cmd select
         widget.backend("commands", null, function (data) {
+            if (!data) return;
             var select = cmdSelect.find("select");
             var addOptions = function (type, entries) {
                 entries.sort();
