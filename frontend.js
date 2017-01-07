@@ -85,7 +85,7 @@ Widget.register("rwa-console", function (widget) {
         }
         e.find(".text").html(escapeHtml(messageData.body));
         consoleEl.append(e);
-        consoleHeader.find(".count").text("(" + receivedServerMessages.length + ")");
+        consoleHeader.find(".count").text("(" + consoleEl.find(".message").length + ")");
         if (autoscrollInp.length && autoscrollInp[0].value == "yes") {
             scrollTo(999999999);
         }
