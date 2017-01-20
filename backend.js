@@ -84,9 +84,9 @@ widget.onServerConnected = function (server) {
 widget.onServerMessage = function (server, message) {
     var logfileId = widget.storage.get(server, "logfile.id") || 0;
     var logfilePath = server.serverDbFolder + "/console";
-    fs.mkdir(logfilePath, 777, function () {
+    fs.mkdir(logfilePath, '0777', function () {
         logfilePath += "/log";
-        fs.mkdir(logfilePath, 777, function () {
+        fs.mkdir(logfilePath, '0777', function () {
             logfilePath += "/";
             fs.stat(logfilePath + logfileId, function (err, stats) {
                 if (err || stats.size > 1024 * 1024) {
