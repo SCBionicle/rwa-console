@@ -84,9 +84,9 @@ widget.onServerConnected = function (server) {
 widget.onServerMessage = function (server, message) {
     var logfileId = widget.storage.get(server, "logfile.id") || 0;
     var logfilePath = server.serverDbFolder + "/console";
-    fs.mkdir(logfilePath, '0777', function () {
+    fs.mkdir(logfilePath, 777, function () {
         logfilePath += "/log";
-        fs.mkdir(logfilePath, '0777', function () {
+        fs.mkdir(logfilePath, 777, function () {
             logfilePath += "/";
             fs.stat(logfilePath + logfileId, function (err, stats) {
                 if (err || stats.size > 1024 * 1024) {
@@ -98,7 +98,7 @@ widget.onServerMessage = function (server, message) {
                 fs.appendFile(
                     logfilePath + logfileId,
                     "[" + message.timestamp.toLocaleString() + "] " + JSON.stringify(message.body) + "\n",
-                    {"mode": '0777'}
+                    {"mode": 777}
                 );
             });
         });
