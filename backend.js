@@ -95,7 +95,7 @@ widget.onServerMessage = function (server, message) {
                     // call this to remove old files when creating a new id
                     widget.getLogfiles(server);
                 }
-                fs.appendFile(
+                fs.appendFileSync(
                     logfilePath + logfileId,
                     "[" + message.timestamp.toLocaleString() + "] " + JSON.stringify(message.body) + "\n",
                     {"mode": 0o777}
