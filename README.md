@@ -1,3 +1,6 @@
+### Project discontinued
+Because of lack of time, i must discontinue this project. It will stay online, it will probably work out of the box. Maybe someone can take over development for this project?! Feel free to fork it.
+
 # Console widget
 
 Read and control the command line rcon console of your server. You will have access to all rcon commands and you are able to execute all commands. This is the most powerful thing you can do with RCON, but it also requires some knowledge about the commands.
