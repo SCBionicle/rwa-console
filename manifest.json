@@ -1,8 +1,8 @@
 {
-  "id": "rwa-console",
-  "repository": "brainfoolong/rwa-console",
-  "version": "0.10.1",
-  "compatibleGames": "all",
+  "id": "rwa-minecraft-console",
+  "repository": "SCBionicle/rwa-console",
+  "version": "0.0.1",
+  "compatibleGames": "minecraft",
   "compatibleSizes": [
     "large",
     "medium"
