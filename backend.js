@@ -74,6 +74,28 @@ widget.onServerConnected = function (server) {
             widget.availableCommands[server.id][key].push(line.substr(1));
         }
     });
+
+    if(widget.availableCommands[server.id].length == 0) {
+        // get available commands on minecraft server connect, ignore the log
+        server.cmd("help", null, false, function (data) {
+            var key = "variables";
+            var lines = data.split("/");
+            for (var i = 0; i < lines.length; i++) {
+                var line = lines[i];
+                if (line.toLowerCase() == "commands:") {
+                    key = "commands";
+                }
+                if (line.substr(0, 1) != " ") continue;
+                if (typeof widget.availableCommands[server.id] == "undefined") {
+                    widget.availableCommands[server.id] = {};
+                }
+                if (typeof widget.availableCommands[server.id][key] == "undefined") {
+                    widget.availableCommands[server.id][key] = [];
+                }
+                widget.availableCommands[server.id][key].push(line.substr(1));
+            }
+        });
+    }
 };
 
 /**
