@@ -56,7 +56,7 @@ widget.getLogfiles = function (server, callback) {
  */
 widget.onServerConnected = function (server) {
     // get available commands on server connect, ignore the log
-    server.cmd("find .", null, false, function (data) {
+    /*server.cmd("find .", null, false, function (data) {
         var key = "variables";
         var lines = data.split("\n");
         for (var i = 0; i < lines.length; i++) {
@@ -75,7 +75,7 @@ widget.onServerConnected = function (server) {
         }
     });
 
-    if(widget.availableCommands[server.id].length == 0) {
+    if(widget.availableCommands[server.id].length == 0) { */
         // get available commands on minecraft server connect, ignore the log
         server.cmd("help", null, false, function (data) {
             var key = "variables";
@@ -95,7 +95,7 @@ widget.onServerConnected = function (server) {
                 widget.availableCommands[server.id][key].push(line.substr(1));
             }
         });
-    }
+    //}
 };
 
 /**
